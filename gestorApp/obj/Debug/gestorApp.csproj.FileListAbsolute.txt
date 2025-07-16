@@ -1,0 +1,10 @@
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\bin\Debug\gestorApp.exe.config
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\bin\Debug\gestorApp.exe
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\bin\Debug\gestorApp.pdb
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\obj\Debug\gestorApp.csproj.AssemblyReference.cache
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\obj\Debug\gestorApp.Form1.resources
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\obj\Debug\gestorApp.Properties.Resources.resources
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\obj\Debug\gestorApp.csproj.GenerateResource.cache
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\obj\Debug\gestorApp.csproj.CoreCompileInputs.cache
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\obj\Debug\gestorApp.exe
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\obj\Debug\gestorApp.pdb

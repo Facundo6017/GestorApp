@@ -12,8 +12,15 @@ namespace Negocio
         public List<Articulo> listar()
         {
             List<Articulo> listaArticulo = new List<Articulo>();
+            try
+            {
+                return listaArticulo;
+            }
+            catch (Exception)
+            {
 
-            return listaArticulo;
+                throw;
+            }
         }
     }
 }
