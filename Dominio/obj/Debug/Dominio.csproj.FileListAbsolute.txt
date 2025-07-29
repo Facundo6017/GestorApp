@@ -1,0 +1,6 @@
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\Dominio\bin\Debug\Dominio.dll
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\Dominio\bin\Debug\Dominio.pdb
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\Dominio\obj\Debug\Dominio.dll
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\Dominio\obj\Debug\Dominio.pdb

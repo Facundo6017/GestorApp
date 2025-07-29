@@ -8,3 +8,10 @@ C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\obj\Debu
 C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\obj\Debug\gestorApp.csproj.CoreCompileInputs.cache
 C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\obj\Debug\gestorApp.exe
 C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\obj\Debug\gestorApp.pdb
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\bin\Debug\Dominio.dll
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\bin\Debug\Negocio.dll
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\bin\Debug\Dominio.pdb
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\bin\Debug\Negocio.pdb
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\obj\Debug\gestorApp.csproj.CopyComplete
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\obj\Debug\gestorApp.Form2.resources
+C:\Users\kufa6\OneDrive\Desktop\GestorDiscos\TPFinalN2_Mamani\gestorApp\obj\Debug\gestorApp.Form3.resources

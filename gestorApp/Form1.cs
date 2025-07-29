@@ -7,154 +7,120 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Negocio;
+using Dominio;
 
 namespace gestorApp
 {
     public partial class Form1 : Form
     {
+        private List<Articulo> lista = new List<Articulo>();
         public Form1()
         {
             InitializeComponent();
+            dgvLoad();
+        }
+        //funciones
+        public void dgvLoad()
+        {
+            ArticuloService service = new ArticuloService();
+            try
+            {   
+                this.lista= service.listarArt();
+                dgv1.DataSource = this.lista;
+                ocultarColumnas();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("No se pueden cargar los articulos:\n"+ex.Message);
+            }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void dgv1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void nuevoBtn_Click(object sender, EventArgs e)
         {
-
+            Form2 nuevo = new Form2();
+            nuevo.ShowDialog();
+            dgvLoad();
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
+        private void btnModificar_Click(object sender, EventArgs e)
         {
-
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
+            Form2 modificar = new Form2(seleccionado);
+            modificar.ShowDialog();
+            dgvLoad();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnEliminar_Click(object sender, EventArgs e)
         {
-
+            Articulo seleccionado;
+            ArticuloService service = new ArticuloService();
+            seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
+            DialogResult respuesta = MessageBox.Show("¿Estas seguro de eliminar este articulo?","Confirmar eleccion",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            if(respuesta == DialogResult.Yes)
+            {
+                service.eliminar(seleccionado);
+                MessageBox.Show("Eliminado correctamente");
+            }
+            dgvLoad();
+        }
+        private void cargarImg(string urlimg)
+        {
+            try
+            {
+                 ptc1.LoadAsync(urlimg);         //lo puse asi para que cargue rapido en realidad va con el load
+            }
+            catch (Exception)
+            {
+              
+               ptc1.Load("https://carte.com.ar/img/nd.png");//No se por que hace que ande lento  
+            }
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void dgv1_SelectionChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            if(dgv1.CurrentRow != null){
+                Articulo seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
+                cargarImg(seleccionado.urlImg);
+            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
+            Form3 ver = new Form3(seleccionado);
+            ver.ShowDialog();
 
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+            List<Articulo> buscados;
+            string filtro = textBox1.Text;
+            if (filtro.Length > 1)
+            {
+                buscados = lista.FindAll(x => x.codigo.ToUpper().Contains(filtro.ToUpper()) || x.nombre.ToUpper().Contains(filtro.ToUpper()) || x.marca.descripcion.ToUpper().Contains(filtro.ToUpper()) || x.categoria.descripcion.ToUpper().Contains(filtro.ToUpper()));
+            }
+            else
+            {
+                buscados = lista;
+            }
+            dgv1.DataSource = null;
+            dgv1.DataSource = buscados;
+            ocultarColumnas();
         }
-
-        private void label8_Click_1(object sender, EventArgs e)
+        private void ocultarColumnas()
         {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void artBox_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void toolStripComboBox1_Click(object sender, EventArgs e)
-        {
-
+            dgv1.Columns[0].Visible = false;
+            dgv1.Columns[6].Visible = false;
         }
     }
 }
