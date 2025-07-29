@@ -51,66 +51,6 @@ namespace Negocio
                 db.cerrarConexion();
             }
         }
-        public List<Categoria> listarCategoria() //creo que me podria ahorrar hacer esto si las dos clases eredarian de una clase abstacta seria algo como list<Elemento> y retornarla , aunque deberia agregar otro parametro para manejar las 2 query con un if y hacer la consulta a la db
-        {
-            List<Categoria> listaCategoria = new List<Categoria>();
-            AccesoDB db = new AccesoDB();
-            try
-            {
-                string categoriaQuery = "SELECT Id,Descripcion FROM CATEGORIAS";
-                db.setearConsulta(categoriaQuery);
-                db.ejecutarConsulta();
-                while (db.Lector.Read())
-                {
-                    Categoria aux = new Categoria();
-                    aux.id = (int)db.Lector["Id"];
-                    aux.descripcion = (string)db.Lector["Descripcion"];
-
-                    listaCategoria.Add(aux);
-                }
-                
-                return listaCategoria;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                db.cerrarConexion();
-            }
-        }
-       public List<Marca> listarMarca()
-        {
-            List<Marca> listaMarca = new List<Marca>();
-            AccesoDB db = new AccesoDB();
-            try
-            {
-                string marcaQuery = "SELECT Id,Descripcion FROM MARCAS";
-                db.setearConsulta(marcaQuery);
-                db.ejecutarConsulta();
-                while (db.Lector.Read())
-                {
-                    Marca aux = new Marca();
-                    aux.id = (int)db.Lector["Id"];
-                    aux.descripcion = (string)db.Lector["Descripcion"];
-
-                    listaMarca.Add(aux);
-                }
-              
-                return listaMarca;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                db.cerrarConexion();
-            }
-        }
 
         public void agregar(Articulo aux)
         {

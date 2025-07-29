@@ -122,5 +122,10 @@ namespace gestorApp
             dgv1.Columns[0].Visible = false;
             dgv1.Columns[6].Visible = false;
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

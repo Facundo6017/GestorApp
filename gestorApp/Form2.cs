@@ -80,10 +80,12 @@ namespace gestorApp
         private void articuloLoad()
         {
             ArticuloService service = new ArticuloService();
+            MarcaService marcaService = new MarcaService();
+            CategoriaService categoriaService = new CategoriaService();
             try
             {
-                cboCatLoad(service);
-                cboMarLoad(service);
+                cboLoad(marcaService);
+                cboLoad(categoriaService);
                 if (this.aux != null)
                 {
                     textBox1.Text = this.aux.codigo;
@@ -100,8 +102,7 @@ namespace gestorApp
                 MessageBox.Show("Error al cargar el artículo: " + ex.Message);
             }
         }
-        //no se me ocurre como hacer para no repetir este codigo por que aunque hacen lo mismo marca y categoria tienen una identidad diferente :/ si no tendria que ser una clase generica , entonces podria usar una clase abstracta?
-        public void cboCatLoad(ArticuloService service)
+        public void cboLoad(CategoriaService service)
         {
             try
             {
@@ -117,7 +118,7 @@ namespace gestorApp
                 throw ex;
             }
         }
-        public void cboMarLoad(ArticuloService service)
+        public void cboLoad(MarcaService service)
         {
             try
             {
@@ -132,6 +133,11 @@ namespace gestorApp
 
                 throw ex;
             }
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

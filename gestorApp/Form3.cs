@@ -27,10 +27,12 @@ namespace gestorApp
         private void verLoad(Articulo aux)
         {
             ArticuloService service = new ArticuloService();
+            MarcaService marcaService = new MarcaService();
+            CategoriaService categoriaService = new CategoriaService();
             try
             {
-                cboCatLoad(service);
-                cboMarLoad(service);
+                cboLoad(marcaService);
+                cboLoad(categoriaService);
                 textBox1.Text = this.aux.codigo;
                 textBox2.Text = this.aux.nombre;
                 textBox3.Text = this.aux.descripcion;
@@ -57,14 +59,14 @@ namespace gestorApp
                 pb1.Load("https://carte.com.ar/img/nd.png");
             }
         }
-        public void cboMarLoad(ArticuloService service)
+        public void cboLoad(CategoriaService service)
         {
             try
             {
-                this.listaMarca = service.listarMarca();
-                cboMarca.DataSource = listaMarca;
-                cboMarca.DisplayMember = "Descripcion";
-                cboMarca.ValueMember = "Id";
+                this.listaCategoria = service.listarCategoria();
+                cboCategoria.DataSource = listaCategoria;
+                cboCategoria.DisplayMember = "Descripcion";
+                cboCategoria.ValueMember = "Id";
 
             }
             catch (Exception ex)
@@ -73,14 +75,14 @@ namespace gestorApp
                 throw ex;
             }
         }
-        public void cboCatLoad(ArticuloService service)
+        public void cboLoad(MarcaService service)
         {
             try
             {
-                this.listaCategoria = service.listarCategoria();
-                cboCategoria.DataSource = listaCategoria;
-                cboCategoria.DisplayMember = "Descripcion";
-                cboCategoria.ValueMember = "Id";
+                this.listaMarca = service.listarMarca();
+                cboMarca.DataSource = listaMarca;
+                cboMarca.DisplayMember = "Descripcion";
+                cboMarca.ValueMember = "Id";
 
             }
             catch (Exception ex)
