@@ -29,10 +29,9 @@ namespace Negocio
 
                 return listaCategoria;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
             finally
             {

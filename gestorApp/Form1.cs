@@ -43,32 +43,66 @@ namespace gestorApp
 
         private void nuevoBtn_Click(object sender, EventArgs e)
         {
-            Form2 nuevo = new Form2();
-            nuevo.ShowDialog();
-            dgvLoad();
+            try
+            {
+                Form2 nuevo = new Form2(lista);
+                nuevo.ShowDialog();
+                dgvLoad();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("No se pudo agregar:\n" + ex.ToString());
+            }       
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Articulo seleccionado;
-            seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
-            Form2 modificar = new Form2(seleccionado);
-            modificar.ShowDialog();
-            dgvLoad();
+            if (dgv1.CurrentRow == null)
+            {
+                MessageBox.Show("No se seleccionó ningún artículo.");
+                return;// no se que tan bien deberia estar esto si es un void no deberia retornar nada 
+            }
+            try
+            {
+                seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
+                Form2 modificar = new Form2(seleccionado);
+                modificar.ShowDialog();
+                dgvLoad();
+            }
+            catch (Exception ex)
+            {
+
+                 MessageBox.Show("No se pudo modificar:\n"+ex.ToString());
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             Articulo seleccionado;
             ArticuloService service = new ArticuloService();
-            seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
-            DialogResult respuesta = MessageBox.Show("¿Estas seguro de eliminar este articulo?","Confirmar eleccion",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
-            if(respuesta == DialogResult.Yes)
+            if (dgv1.CurrentRow == null)
             {
-                service.eliminar(seleccionado);
-                MessageBox.Show("Eliminado correctamente");
+                MessageBox.Show("No se seleccionó ningún artículo.");
+                return;
             }
-            dgvLoad();
+            try
+            {
+                seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
+                DialogResult respuesta = MessageBox.Show("¿Estas seguro de eliminar este articulo?", "Confirmar eleccion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {
+                    service.eliminar(seleccionado);
+                    MessageBox.Show("Eliminado correctamente");
+                }
+                dgvLoad();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("No se pudo eliminar:\n" + ex.ToString());
+            }          
         }
         private void cargarImg(string urlimg)
         {
@@ -79,7 +113,7 @@ namespace gestorApp
             catch (Exception)
             {
               
-               ptc1.Load("https://carte.com.ar/img/nd.png");//No se por que hace que ande lento  
+               ptc1.Load("https://carte.com.ar/img/nd.png");//No se por que hace que ande lento  debe ser por mi pc
             }
         }
 
@@ -95,9 +129,23 @@ namespace gestorApp
         private void button1_Click(object sender, EventArgs e)
         {
             Articulo seleccionado;
-            seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
-            Form3 ver = new Form3(seleccionado);
-            ver.ShowDialog();
+            if (dgv1.CurrentRow == null)
+            {
+                MessageBox.Show("No se seleccionó ningún artículo.");
+                return;
+            }
+            try
+            {
+                seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
+                Form3 ver = new Form3(seleccionado);
+                ver.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+      
 
         }
 

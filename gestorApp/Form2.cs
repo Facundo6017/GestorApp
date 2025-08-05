@@ -17,10 +17,11 @@ namespace gestorApp
         private Articulo aux = null;
         private List<Categoria> listaCategoria = new List<Categoria>();
         private List<Marca> listaMarca = new List<Marca>();
-
-        public Form2()
+        private List<Articulo> lista = new List<Articulo>();
+        public Form2(List<Articulo> lista)
         {
             InitializeComponent();
+            this.lista = lista;
             Text = "Nuevo Articulo";
             articuloLoad();
         }
@@ -51,14 +52,22 @@ namespace gestorApp
                 aux.marca = (Marca)cboMarca.SelectedItem;
                 aux.categoria = (Categoria)cboCategoria.SelectedItem;
 
-                if (aux.id != 0)
+                if (validaArticulo(lista, aux))
                 {
-                    service.modificar(this.aux);
+                    if (aux.id != 0)
+                    {
+                        service.modificar(this.aux);
+                    }
+                    else
+                    {
+                        service.agregar(this.aux);
+                    }
                 }
                 else
                 {
-                    service.agregar(this.aux);
+                    throw new Exception("El codigo de articulo ya existe.");
                 }
+
                 Close();
             }
             catch (Exception ex)
@@ -77,6 +86,10 @@ namespace gestorApp
         {
             
         }
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
         private void articuloLoad()
         {
             ArticuloService service = new ArticuloService();
@@ -89,6 +102,7 @@ namespace gestorApp
                 if (this.aux != null)
                 {
                     textBox1.Text = this.aux.codigo;
+                    textBox1.ReadOnly = true;
                     textBox2.Text = this.aux.nombre;
                     textBox3.Text = this.aux.descripcion;
                     textBox6.Text = this.aux.urlImg;
@@ -135,9 +149,18 @@ namespace gestorApp
             }
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        public Boolean validaArticulo(List<Articulo> lista,Articulo buscado)
         {
-
+            List<Articulo> encontrado;
+            if(lista != null && buscado!=null && buscado.codigo!=null)
+            {
+                encontrado = lista.FindAll(x => x.codigo.ToUpper().Contains(buscado.codigo.ToUpper()));
+                if (encontrado.Count<1)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

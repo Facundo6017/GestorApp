@@ -22,17 +22,33 @@ namespace Negocio
                 {
                     Articulo art = new Articulo();
                     art.id = (int)db.Lector["Id"];
-                    art.codigo = (string)db.Lector["Codigo"];
-                    art.nombre = (string)db.Lector["Nombre"];
-                    art.descripcion = (string)db.Lector["Descripcion"];
+
+                    if (!(db.Lector["Codigo"] is DBNull))
+                        art.codigo = (string)db.Lector["Codigo"];
+
+                    if (!(db.Lector["Nombre"] is DBNull))
+                        art.nombre = (string)db.Lector["Nombre"];
+
+                    if (!(db.Lector["Descripcion"] is DBNull))
+                        art.descripcion = (string)db.Lector["Descripcion"];
+
                     art.marca = new Marca();
-                    art.marca.id = (int)db.Lector["IdMarca"];
-                    art.marca.descripcion = (string)db.Lector["Marca"];
+                    if (!(db.Lector["IdMarca"] is DBNull))
+                        art.marca.id = (int)db.Lector["IdMarca"];
+                    if (!(db.Lector["Marca"] is DBNull))
+                        art.marca.descripcion = (string)db.Lector["Marca"];
+
                     art.categoria = new Categoria();
-                    art.categoria.id = (int)db.Lector["IdCategoria"];
-                    art.categoria.descripcion = (string)db.Lector["Categoria"];
-                    art.urlImg = (string)db.Lector["ImagenUrl"];
-                    art.precio = (decimal)(db.Lector["Precio"]);//No andaba por que lo tenia como float JAJAJA
+                    if (!(db.Lector["IdCategoria"] is DBNull))
+                        art.categoria.id = (int)db.Lector["IdCategoria"];
+                    if (!(db.Lector["Categoria"] is DBNull))
+                        art.categoria.descripcion = (string)db.Lector["Categoria"];
+
+                    if (!(db.Lector["ImagenUrl"] is DBNull))
+                        art.urlImg = (string)db.Lector["ImagenUrl"];
+
+                    if (!(db.Lector["Precio"] is DBNull))
+                        art.precio = (decimal)db.Lector["Precio"];//No andaba por que lo tenia como float JAJAJA
 
                     listaArticulo.Add(art);
 
@@ -121,10 +137,10 @@ namespace Negocio
                 db.setearParametro("@Id", aux.id);
                 db.ejecutarAccion();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally
             {

@@ -41,10 +41,10 @@ namespace gestorApp
                 cboCategoria.SelectedValue = this.aux.categoria.id;
                 cargarImg(aux.urlImg);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.ToString());
             }
             
         }
@@ -52,11 +52,11 @@ namespace gestorApp
         {
             try
             {
-                pb1.LoadAsync(urlimg);
+                pb1.LoadAsync(urlimg); //esta funcion en ves de tirar la exepcion tira un error
             }
             catch (Exception)
             {
-                pb1.Load("https://carte.com.ar/img/nd.png");
+                //pb1.Load("https://carte.com.ar/img/nd.png"); lo deje asi por que en mi pc tardaba en cargar la imagen
             }
         }
         public void cboLoad(CategoriaService service)
@@ -72,7 +72,7 @@ namespace gestorApp
             catch (Exception ex)
             {
 
-                throw ex;
+                MessageBox.Show(ex.ToString()); 
             }
         }
         public void cboLoad(MarcaService service)
@@ -87,9 +87,15 @@ namespace gestorApp
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                
+                MessageBox.Show(ex.ToString());
+         
             }
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
